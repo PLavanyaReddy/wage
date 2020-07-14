@@ -1,11 +1,18 @@
 #!/bin/bash
 echo "Welcome to employee wage calculation"
-ispresent=$(( RANDOM%2 ))
-if [ $ispresent -eq 1 ]
-then
-        wageperhr=20
-	hrs=8
-	salary=$(( $wageperhr*$hrs ))
-else
-        salary=0
-fi
+isPartTime=1
+isFullTime=2
+empRatePerHr=20
+empCheck=$(( RANDOM%3 ))
+case $empCheck in
+	$isFullTime)
+		empHrs=8
+		;;
+	$isPartTime)
+		empHrs=4
+		;;
+	*)
+	empHrs=0;;
+esac
+salary=$(( $empHrs*$empRatePerHr ))
+
