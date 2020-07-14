@@ -1,4 +1,5 @@
 #!/bin/bash
+declare -A days
 echo "Welcome to employee wage calculation"
 isPartTime=1
 isFullTime=2
@@ -8,6 +9,7 @@ NUM_WORKING_DAYS=20
 totalEmpHrs=0
 totalWorkingDays=0
 counter=0
+daynum=1
 function getWorkingHours(){
 	case $1 in
 		$isFullTime)
@@ -26,9 +28,13 @@ do
 	workHours="$(getWorkingHours $(( RANDOM%3 )) )"
 	dailywages[((counter))]=$(( $workHours*20 ))
         counter=$(( $counter+1 ))
+	days[$daynum]=$(( $workHours*20 ))
+	daynum=$(( $daynum+1 ))
 	totalworkHours=$(( $totalworkHours+$workHours ))
 done
 totalSalary=$(( $totalworkHours*$EMP_RATE_PER_HR ))
-
-
+for index in ${!days[@]}
+do
+	echo "Wage of day $index is "${days[$index]}
+done
 
