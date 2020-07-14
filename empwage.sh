@@ -3,7 +3,9 @@ echo "Welcome to employee wage calculation"
 ispresent=$(( RANDOM%2 ))
 if [ $ispresent -eq 1 ]
 then
-        echo "Employee is present"
+        wageperhr=20
+	hrs=8
+	salary=$(( $wageperhr*$hrs ))
 else
-        echo "Employee is absent"
+        salary=0
 fi
